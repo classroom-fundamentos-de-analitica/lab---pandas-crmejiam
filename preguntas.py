@@ -188,13 +188,12 @@ def pregunta_11():
     39   39    a,d,f
     """
     nums = tbl1._c0.unique()
-    data = {"_c4": []}
+    data = {"_c0": nums, "_c4": []}
     for num in nums:
         vals = sorted(tbl1[tbl1._c0 == num]._c4)
         valsString = ",".join(vals)
         data["_c4"] += [valsString]
-    index = pd.Series(nums, name="_c0")
-    df = pd.DataFrame(data, index=index)
+    df = pd.DataFrame(data)
     return df
 
 def pregunta_12():
