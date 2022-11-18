@@ -65,8 +65,7 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
-
+    return tbl0.groupby("_c1").mean()._c2
 
 def pregunta_05():
     """
@@ -82,8 +81,7 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
-
+    return tbl0.groupby("_c1").max()._c2
 
 def pregunta_06():
     """
@@ -94,8 +92,7 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
-
+    return [letra.upper() for letra in sorted(tbl1._c4.unique())]
 
 def pregunta_07():
     """
@@ -110,8 +107,7 @@ def pregunta_07():
     E    67
     Name: _c2, dtype: int64
     """
-    return
-
+    return tbl0.groupby("_c1").sum()._c2
 
 def pregunta_08():
     """
@@ -128,8 +124,9 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
-
+    df = tbl0.copy()
+    df["suma"] = df["_c0"].add(df["_c2"])
+    return df
 
 def pregunta_09():
     """
@@ -146,8 +143,9 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
-
+    df = tbl0.copy()
+    df["year"] = df.apply(lambda row: row._c3[:4], axis=1)
+    return df
 
 def pregunta_10():
     """
