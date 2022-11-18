@@ -211,8 +211,15 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
-
+    df = tbl2.copy()
+    df["_c5"] = df.apply(lambda row: ":".join([row._c5a, str(row._c5b)]), axis=1)
+    nums = tbl2._c0.unique()
+    data = {"_c0": nums, "_c5": []}
+    for num in nums:
+        vals = sorted(df[df._c0 == num]._c5)
+        valsString = ",".join(vals)
+        data["_c5"] += [valsString]
+    return pd.DataFrame(data)
 
 def pregunta_13():
     """
@@ -228,4 +235,6 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+    df = tbl0.set_index('_c0').join(tbl2.set_index('_c0'))
+    dfgroup = df.groupby("_c1").sum()._c5b
+    return dfgroup
