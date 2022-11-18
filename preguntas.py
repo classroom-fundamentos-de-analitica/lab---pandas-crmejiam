@@ -161,8 +161,15 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
-
+    letras = sorted(tbl0._c1.unique())
+    data = {"_c2": []}
+    for letra in letras:
+        valoresC2 = sorted(tbl0[tbl0._c1 == letra]._c2)
+        listaC2 = [str(i) for i in valoresC2]
+        valorString = ":".join(listaC2)
+        data["_c2"] = data["_c2"] + [valorString]
+    df = pd.DataFrame(data, index=pd.Series(letras, name="_c1"))
+    return df
 
 def pregunta_11():
     """
