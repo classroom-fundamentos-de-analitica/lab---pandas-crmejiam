@@ -22,8 +22,7 @@ def pregunta_01():
     40
 
     """
-    return
-
+    return tbl0.shape[0]
 
 def pregunta_02():
     """
@@ -33,8 +32,7 @@ def pregunta_02():
     4
 
     """
-    return
-
+    return tbl0.shape[1]
 
 def pregunta_03():
     """
@@ -50,8 +48,10 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
-
+    df_letras = tbl0.copy()
+    df_letras['letra'] = tbl0._c1
+    respuesta = df_letras.groupby("letra").count()._c1
+    return respuesta
 
 def pregunta_04():
     """
